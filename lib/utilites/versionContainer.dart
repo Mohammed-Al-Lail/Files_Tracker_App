@@ -1,4 +1,3 @@
-
 import 'package:files_tracker_app/classes/version.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +9,7 @@ class versionContainer extends StatelessWidget {
     });
 
   final Version version;
+
   @override
   Widget build(BuildContext context) {
 
@@ -97,7 +97,31 @@ class versionContainer extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 10,),
-                  // here we have to provide a pdf file
+
+                  // here we have to provide an attachment file like pdf
+
+                  if(version.pickedFile!= null) // if there was an attachment
+
+                    TextButton( // show text button withe the file name
+                      onPressed: (){},
+                      child: Text(
+                        version.pickedFile!.name.toString(),
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.blueAccent.shade700
+                        ),
+                      ),
+                     
+                    )
+                    
+                  else // else if there was no attachment show this text
+                    Text(
+                      "No files was attached",
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.red.shade700
+                        ),
+                    ),  
       
                  
                 ]

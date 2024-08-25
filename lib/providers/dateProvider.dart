@@ -14,6 +14,9 @@ DateTime? _selectedDate;
 
 
 
+
+//Methods.......
+
 // method for the date
   Future<void> selectDateMethod(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -29,7 +32,8 @@ DateTime? _selectedDate;
     notifyListeners();
   }
 
-  void makeDateNull(){
+// method to reset the date make it = null
+  void makeDateNull(){ 
     _selectedDate = null;
     notifyListeners();
   }
@@ -46,14 +50,23 @@ DateTime? _selectedDate;
       notifyListeners();
     }
 
-    //method to get version list for specefic file
-    List<Version> getVersionList(File file){
+    // method to check if the version name was repeted or not
+    bool isVersionNameValid(File file , String versionTitle){
 
-      return filesMap[file.fileNumber]!.versionsList;
-      
+      bool isNameValid=true; // to prevent version name repetion
+                
+      for(Version version in file.versionsList){ // this loop to check if the name was repeted or not
+
+        if(version.title.toLowerCase() == versionTitle.trim().toLowerCase()){
+          isNameValid =false;
+        }
+      }
+
+        return isNameValid;
     }
 
 
+    
   
 
 

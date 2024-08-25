@@ -13,6 +13,8 @@ class myTextField extends StatelessWidget {
     this.validator,
     this.keyboardType,
     this.maxLength,
+    this.errorFontSize=16, // defult value
+    this.errorColor=Colors.yellow
 
     
     });
@@ -23,6 +25,8 @@ class myTextField extends StatelessWidget {
    String? Function(String?)? validator;
    TextInputType? keyboardType;
    int? maxLength;
+   double? errorFontSize;
+   Color? errorColor;
 
 
   @override
@@ -60,11 +64,10 @@ class myTextField extends StatelessWidget {
                     ),
 
                   // the design of the error massege
-                    errorStyle: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.yellow
-                      
-
+                    errorStyle:  TextStyle(
+                      fontSize:errorFontSize ,
+                      fontWeight: FontWeight.w900,
+                      color: errorColor
                     ),
                   
                   enabledBorder: const OutlineInputBorder(

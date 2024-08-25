@@ -52,7 +52,7 @@ class _searchForFileState extends State<searchForFile> {
 
         Future.delayed( // after 3 seconds go to the file page information 
           const Duration(seconds: 3) ,
-          () => Navigator.push(context, MaterialPageRoute(builder: (context)=> distinctFileScreen(file: Provider.of<dataProvider>(context,listen: false).filesMap[fileNumber]!))),
+          () => Navigator.push(context, MaterialPageRoute(builder: (context)=> distinctFileScreen(file: Provider.of<dataProvider>(context).filesMap[fileNumber]!))),
         );
 
 
