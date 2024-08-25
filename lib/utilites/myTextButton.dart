@@ -10,7 +10,8 @@ class MyTextButton extends StatelessWidget {
     
     this.width=200, // defult values
     this.height=60,
-    this.fontSize=24
+    this.fontSize=24,
+    this.color=const Color.fromARGB(255, 249, 168, 37), // defult color == {Colors.yellow.shade800}
 
     
     });
@@ -21,6 +22,7 @@ class MyTextButton extends StatelessWidget {
    double width;
    double height;
    double? fontSize;
+   Color? color;
   
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class MyTextButton extends StatelessWidget {
       
                 style:  ButtonStyle( 
                   
-                  backgroundColor: MaterialStatePropertyAll(Colors.yellow.shade800),
+                  backgroundColor: MaterialStatePropertyAll(color),
                   shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                    )),

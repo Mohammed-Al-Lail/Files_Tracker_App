@@ -35,7 +35,9 @@ class myTextField extends StatelessWidget {
                 controller: controller,
                 keyboardType: keyboardType,
                 maxLength:maxLength,
-                
+
+                cursorColor: Colors.deepPurple, // on the normal state
+                cursorErrorColor: Colors.deepPurple, // on the error state
               
 
                 decoration: InputDecoration(
@@ -55,6 +57,14 @@ class myTextField extends StatelessWidget {
                       color: Colors.grey.shade700
                     ),
                     
+                    ),
+
+                  // the design of the error massege
+                    errorStyle: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.yellow
+                      
+
                     ),
                   
                   enabledBorder: const OutlineInputBorder(
