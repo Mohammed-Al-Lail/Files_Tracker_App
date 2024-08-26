@@ -102,7 +102,8 @@ class _distinctFileScreenState extends State<distinctFileScreen> {
                     ),
                   ),
                   const SizedBox(width: 10,),
-        
+
+                // button for file descreption
                   IconButton(
                     onPressed: (){}, 
                     icon: const Icon(

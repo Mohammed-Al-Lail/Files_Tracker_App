@@ -27,15 +27,17 @@ class _MyDialogState extends State<MyDialog> {
 
 final TextEditingController _versionNameController =TextEditingController();
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
- PlatformFile? selectedFile;
+
+ PlatformFile? selectedFile; // PlatformFile from file_picker packge
 
 
 //Method to pick file and return it
-  Future selectFile() async {
+  Future<void> selectFile() async { // we use (Future) keyword for the things that need time to be completed , and also we use (async) and (await) key words with Future
 
-    try{
+    
 
-      final result = await FilePicker.platform.pickFiles();
+      // call pickFiles  methdo and use (await) so the value on next lines will depend on this
+      final result = await FilePicker.platform.pickFiles(); // using file_picker packge
 
     // if the result was = null {the user did't choose file}
     if(result == null){
@@ -49,9 +51,7 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     });
 
 
-    }catch(e){
-      
-    }
+   
 
   }
 
