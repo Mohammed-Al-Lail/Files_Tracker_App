@@ -120,6 +120,23 @@ class _addNewFileState extends State<addNewFile> {
         mainAxisAlignment: MainAxisAlignment.center,
       
         children: [
+
+          // icon for design   
+            Container(
+              width: 120, 
+              height: 120,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.teal.shade50
+              ),
+              child: const Icon(
+              Icons.file_open_outlined,
+                size: 100,
+                color: Colors.teal,
+              
+              ),
+            ),
+            const SizedBox(height: 30,),
       
         // for enter file number (text)
           Text(
@@ -172,7 +189,7 @@ class _addNewFileState extends State<addNewFile> {
           myTextField(
             controller: _fileDescreptionController,
             label: "File descreption",
-            maxLength: 200,
+            maxLength: 400,
             keyboardType: TextInputType.text,
             validator: (val){
 
@@ -192,6 +209,8 @@ class _addNewFileState extends State<addNewFile> {
             text:"Creat" , 
             function: creatButtonMethod,
             ),
+
+            const SizedBox(height: 50,)
         ],
       ),
             )

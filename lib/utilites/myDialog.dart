@@ -1,4 +1,4 @@
-import 'package:file_picker/file_picker.dart';
+//import 'package:file_picker/file_picker.dart';
 import 'package:files_tracker_app/classes/file.dart';
 import 'package:files_tracker_app/classes/version.dart';
 import 'package:files_tracker_app/providers/dateProvider.dart';
@@ -28,32 +28,32 @@ class _MyDialogState extends State<MyDialog> {
 final TextEditingController _versionNameController =TextEditingController();
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
- PlatformFile? selectedFile; // PlatformFile from file_picker packge
+ //PlatformFile? selectedFile; // PlatformFile from file_picker packge
 
 
-//Method to pick file and return it
-  Future<void> selectFile() async { // we use (Future) keyword for the things that need time to be completed , and also we use (async) and (await) key words with Future
+// //Method to pick file and return it
+//   Future<void> selectFile() async { // we use (Future) keyword for the things that need time to be completed , and also we use (async) and (await) key words with Future
 
     
 
-      // call pickFiles  methdo and use (await) so the value on next lines will depend on this
-      final result = await FilePicker.platform.pickFiles(); // using file_picker packge
+//       // call pickFiles  methdo and use (await) so the value on next lines will depend on this
+//       final result = await FilePicker.platform.pickFiles(); // using file_picker packge
 
-    // if the result was = null {the user did't choose file}
-    if(result == null){
-    return null; // return null
-    }
+//     // if the result was = null {the user did't choose file}
+//     if(result == null){
+//     return null; // return null
+//     }
 
   
 
-    setState(() { // if it was not null
-      selectedFile = result.files.first; // update the value of the selected file
-    });
+//     setState(() { // if it was not null
+//       selectedFile = result.files.first; // update the value of the selected file
+//     });
 
 
    
 
-  }
+//   }
 
 
 
@@ -65,12 +65,12 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
          
           
           backgroundColor: Colors.teal.shade300,
-          title: const Text(
+          title:  Text(
             "Add new Version",
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w900,
-              color: Colors.white
+              color: Colors.teal.shade50
             ),
             ),
         
@@ -190,7 +190,7 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                             // icon button to attach file
                               IconButton(
 
-                              onPressed:selectFile , // you can find this mehod at the top of this file  {this class}
+                              onPressed:(){} , // you can find this mehod at the top of this file  {this class}
                                icon: const Icon(
                                  Icons.attach_file,
                                  size: 30,
@@ -205,15 +205,15 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                                ),
 
                                // if there was an attachment we will add the name of the selected file , {if not , the text will not appear}
-                               if(selectedFile != null)
-                                  Text(
-                                    selectedFile!.name,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.amber.shade600
-                                    ),
-                                    ),
+                              //  if(selectedFile != null)
+                              //     Text(
+                              //       selectedFile!.name,
+                              //       style: TextStyle(
+                              //         fontSize: 12,
+                              //         fontWeight: FontWeight.bold,
+                              //         color: Colors.amber.shade600
+                              //       ),
+                              //       ),
 
                           Divider(color: Colors.grey.shade300,),
                           const SizedBox(height: 10,),
@@ -233,7 +233,7 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                                   Version(
                                     title: _versionNameController.text.trim(), 
                                     date: myProvider.selectedDate,
-                                    pickedFile: selectedFile // this value could be null {not neccessary to have a value here}
+                                    //pickedFile: selectedFile // this value could be null {not neccessary to have a value here}
                                     ),
                                   
                                    );

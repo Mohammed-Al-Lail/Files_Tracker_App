@@ -20,6 +20,25 @@ class home extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
           
             children: [
+
+          // icon for design   
+            Container(
+              width: 120, 
+              height: 120,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.teal.shade50
+              ),
+              child: const Icon(
+                Icons.file_open_outlined,
+                size: 100,
+                color: Colors.teal,
+              
+              ),
+            ),
+            const SizedBox(height: 30,),
+             
+            
           // manage your files (text)
             Text(
               "Manage Your Files Easier !!",
@@ -46,6 +65,8 @@ class home extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> const searchForFile()));
                 },
               ),
+
+              const SizedBox(height: 50,)
             ],
           ),
         ),

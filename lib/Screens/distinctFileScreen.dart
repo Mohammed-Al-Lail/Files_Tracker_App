@@ -2,6 +2,7 @@
 
 import 'package:files_tracker_app/Screens/home.dart';
 import 'package:files_tracker_app/classes/file.dart';
+import 'package:files_tracker_app/utilites/fileDescreptionDialog.dart';
 
 import 'package:files_tracker_app/utilites/myDialog.dart';
 import 'package:files_tracker_app/utilites/myTextButton.dart';
@@ -18,6 +19,9 @@ class distinctFileScreen extends StatefulWidget {
 
   final File file;
 
+
+  
+
   @override
   State<distinctFileScreen> createState() => _distinctFileScreenState();
 }
@@ -29,12 +33,31 @@ class _distinctFileScreenState extends State<distinctFileScreen> {
   void addNewVersionMethod(){
     //widget.file.versionsList.add(Version(title: "Version 1", date: DateTime(2022 , 10 , 2)));
 
-    showDialog(context: context, builder: (BuildContext ctx){
+    showDialog(
+      context: context,
+       builder: (BuildContext ctx){
 
       return  MyDialog( file: widget.file );
-        
 
-    });
+      }
+    );
+
+  }
+
+
+
+  //Method to show the descreption of the file Dialog
+  void fileDescreptionButtonMethod(){
+
+
+    showDialog(
+      context: context,
+       builder: (BuildContext ctx){
+
+        return fileDescreption(descreption: widget.file.fileDescreption);
+    }
+      
+    );
 
   }
 
@@ -105,7 +128,7 @@ class _distinctFileScreenState extends State<distinctFileScreen> {
 
                 // button for file descreption
                   IconButton(
-                    onPressed: (){}, 
+                    onPressed: fileDescreptionButtonMethod, 
                     icon: const Icon(
                       Icons.edit_document,
                       size: 25,

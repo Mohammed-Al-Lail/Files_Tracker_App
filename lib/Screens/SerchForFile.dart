@@ -132,6 +132,23 @@ class _searchForFileState extends State<searchForFile> {
         mainAxisAlignment: MainAxisAlignment.center,
         
           children: [
+
+            // icon for design   
+            Container(
+              width: 120, 
+              height: 120,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.teal.shade50
+              ),
+              child: const Icon(
+             Icons.file_open_outlined,
+                size: 100,
+                color: Colors.teal,
+              
+              ),
+            ),
+            const SizedBox(height: 30,),
         
           // for enter file number (text)
             Text(
@@ -181,6 +198,8 @@ class _searchForFileState extends State<searchForFile> {
                 }
               }
               ),
+
+              const SizedBox(height: 50,),
 
       ]
     ),
