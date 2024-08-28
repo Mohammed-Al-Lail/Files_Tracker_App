@@ -1,4 +1,4 @@
-//import 'package:file_picker/file_picker.dart';
+import 'package:file_picker/file_picker.dart';
 
 class Version{
 
@@ -6,13 +6,13 @@ class Version{
 
   required this.title,
   required this.date,
-  //this.pickedFile
+  this.pickedFile
   });
 
 
   final String title;
   final DateTime? date;
-  //PlatformFile? pickedFile; // not required
+  PlatformFile? pickedFile; // not required
 
 
 }

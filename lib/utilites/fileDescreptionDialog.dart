@@ -68,15 +68,18 @@ final String descreption;
         
                  child: SingleChildScrollView( // the text will be scrollable
         
-                   child: Text(
-                           descreption,
-                           textAlign: TextAlign.center,
-                           style:  const TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold
+                   child: Padding( // make a padding between the text and the enire container
+                     padding: const EdgeInsets.all(8.0),
+                     child: Text(
+                             descreption,
+                             textAlign: TextAlign.center,
+                             style:  const TextStyle(
+                                color: Colors.black,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold
+                               ),
                              ),
-                           ),
+                   ),
                  ),
                    ),
                ),

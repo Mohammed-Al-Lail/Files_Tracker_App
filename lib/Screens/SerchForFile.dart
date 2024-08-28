@@ -128,81 +128,85 @@ class _searchForFileState extends State<searchForFile> {
         
         ),
 
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: SingleChildScrollView(
         
-          children: [
-
-            // icon for design   
-            Container(
-              width: 120, 
-              height: 120,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.teal.shade50
-              ),
-              child: const Icon(
-             Icons.file_open_outlined,
-                size: 100,
-                color: Colors.teal,
-              
-              ),
-            ),
-            const SizedBox(height: 30,),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          
+            children: [
         
-          // for enter file number (text)
-            Text(
-              "Enter File Number",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-                color: Colors.teal.shade100,
+              const SizedBox(height: 100,),
+              // icon for design   
+              Container(
+                width: 120, 
+                height: 120,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.teal.shade50
+                ),
+                child: const Icon(
+               Icons.file_open_outlined,
+                  size: 100,
+                  color: Colors.teal,
+                
+                ),
               ),
-            ),
-
-            const SizedBox(height: 10,),
-
-          // for File Number
-            Form(
-              key: _formKey,
-
-              child: myTextField(
-                controller: _fileNumberController,
-                label: "File Number",
-                maxLength: 8,
-                keyboardType: TextInputType.number,
-                validator: (val) {
-                  
-                  // conditions....
-                  if(_fileNumberController.text.length!=8){
-                    return "The file number must be 8 length";
+              const SizedBox(height: 30,),
+          
+            // for enter file number (text)
+              Text(
+                "Enter File Number",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.teal.shade100,
+                ),
+              ),
+        
+              const SizedBox(height: 10,),
+        
+            // for File Number
+              Form(
+                key: _formKey,
+        
+                child: myTextField(
+                  controller: _fileNumberController,
+                  label: "File Number",
+                  maxLength: 8,
+                  keyboardType: TextInputType.number,
+                  validator: (val) {
+                    
+                    // conditions....
+                    if(_fileNumberController.text.length!=8){
+                      return "The file number must be 8 length";
+                    }
+        
+                    return null;
+                  },
+                ),
+              ),
+        
+        
+              const SizedBox(height: 10,),
+        
+              // Button to searcg file
+              MyTextButton(
+                text:"Search" , 
+                function: (){
+        
+                  if(_formKey.currentState!.validate()){
+                    searchButtonMethod() ;
+                    _formKey.currentState!.reset(); // to reset the form
+        
                   }
-
-                  return null;
-                },
-              ),
-            ),
-
-
-            const SizedBox(height: 10,),
-
-            // Button to searcg file
-            MyTextButton(
-              text:"Search" , 
-              function: (){
-
-                if(_formKey.currentState!.validate()){
-                  searchButtonMethod() ;
-                  _formKey.currentState!.reset(); // to reset the form
-
                 }
-              }
-              ),
-
-              const SizedBox(height: 50,),
-
-      ]
-    ),
+                ),
+        
+                const SizedBox(height: 50,),
+        
+        ]
+            ),
+      ),
 
     );
   }
