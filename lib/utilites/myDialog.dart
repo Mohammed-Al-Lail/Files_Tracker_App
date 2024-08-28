@@ -5,6 +5,7 @@ import 'package:files_tracker_app/providers/dateProvider.dart';
 import 'package:files_tracker_app/utilites/myTextButton.dart';
 import 'package:files_tracker_app/utilites/myTextField.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class MyDialog extends StatefulWidget {
@@ -48,6 +49,7 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
     setState(() { // if it was not null
       selectedFile = result.files.first; // update the value of the selected file
+      
     });
 
 
@@ -198,7 +200,7 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                                  
                                ),
                                style: ButtonStyle(
-                                 backgroundColor: MaterialStatePropertyAll(Colors.teal.shade900)
+                                 backgroundColor: WidgetStatePropertyAll(Colors.teal.shade900)
                                ),
                                
                       
@@ -233,13 +235,13 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                                   Version(
                                     title: _versionNameController.text.trim(), 
                                     date: myProvider.selectedDate,
-                                    //pickedFile: selectedFile // this value could be null {not neccessary to have a value here}
+                                    pickedFile: selectedFile // this value could be null {not neccessary to have a value here}
                                     ),
                                   
                                    );
 
                                    
-                                     
+                                    
                                    
                                   
                                 Navigator.pop(context); // close the page after adding new version

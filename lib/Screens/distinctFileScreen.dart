@@ -72,149 +72,146 @@ class _distinctFileScreenState extends State<distinctFileScreen> {
       
 
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-          
-          
-            children: [
-             const SizedBox(height: 30,),
-              
-              // for file number (text) 
-                Row(
-          
-                  children: [
-                    const SizedBox(width: 10,),
-                    Text(
-                      "File Num:",
-                      style: TextStyle(
-          
-                        fontSize: 16,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.teal.shade100
-                      ),
+        child: Column(
+        
+        
+          children: [
+           const SizedBox(height: 30,),
+            
+            // for file number (text) 
+              Row(
+        
+                children: [
+                  const SizedBox(width: 10,),
+                  Text(
+                    "File Num:",
+                    style: TextStyle(
+        
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.teal.shade100
                     ),
-                    const SizedBox(width: 10,),
-          
-                    Text(
-                      "${widget.file.fileNumber}",
-                      style:  TextStyle(
-          
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        backgroundColor: Colors.teal.shade900
-                      ),
-                    ),
-          
-                  ],
-                ),
-                const SizedBox(height: 5,),
-          
-                // for file descreption text + icon
-                Row(
-          
-                  children: [
-                    const SizedBox(width: 10,),
-                    Text(
-                      "File descreption:",
-                      style: TextStyle(
-          
-                        fontSize: 16,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.teal.shade100,
-                        
-                      ),
-                    ),
-                    const SizedBox(width: 10,),
-          
-                  // button for file descreption
-                    IconButton(
-                      onPressed: fileDescreptionButtonMethod, 
-                      icon: const Icon(
-                        Icons.edit_document,
-                        size: 25,
-                        color: Colors.white,
-                        
-                      ),
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(Colors.teal.shade900)
-                      ),
-                      
-                      ),
-          
-                  ]
-                ),
-          
-                //for add new version Button
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-          
-                  // close the file button
-                    MyTextButton(
-                      text: "Close File",
-                      color: Colors.red.shade700,
-                      width: 150,
-                      height:45,
-                      fontSize: 20, 
-                      function: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const home())); // go to home Page
-                      }
-                      ),
-          
-                  // add new version Button
-                    MyTextButton(
-                      text: "Add Version",
-                      width: 150,
-                      height:45,
-                      fontSize: 20, 
-                      function: addNewVersionMethod
-                      ),
-                  ],
-                ),
-                Divider(color: Colors.grey.shade200, thickness: 0.7,),
-          
-                 const SizedBox(height: 20,),
-          
-                 // for versions (Text)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Versions",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.teal.shade100
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
-                
-          
-                const SizedBox(height: 20,),
-          
-                // list viwe of the versions
-                    SizedBox(
-                      height: 300,
-                      child: ListView.builder(
-                        itemCount: widget.file.versionsList.length,
-                        itemBuilder: (context, index) {
-                      
-                          return versionContainer(version: widget.file.versionsList[index]);
-                        },
-                        
-                        ),
+                  const SizedBox(width: 10,),
+        
+                  Text(
+                    "${widget.file.fileNumber}",
+                    style:  TextStyle(
+        
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      backgroundColor: Colors.teal.shade900
                     ),
-                    const SizedBox(height: 20,)
-                 
-          
-          
-            ],
-          ),
+                  ),
+        
+                ],
+              ),
+              const SizedBox(height: 5,),
+        
+              // for file descreption text + icon
+              Row(
+        
+                children: [
+                  const SizedBox(width: 10,),
+                  Text(
+                    "File descreption:",
+                    style: TextStyle(
+        
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.teal.shade100,
+                      
+                    ),
+                  ),
+                  const SizedBox(width: 10,),
+
+                // button for file descreption
+                  IconButton(
+                    onPressed: fileDescreptionButtonMethod, 
+                    icon: const Icon(
+                      Icons.edit_document,
+                      size: 25,
+                      color: Colors.white,
+                      
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(Colors.teal.shade900)
+                    ),
+                    
+                    ),
+        
+                ]
+              ),
+        
+              //for add new version Button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+        
+                // close the file button
+                  MyTextButton(
+                    text: "Close File",
+                    color: Colors.red.shade700,
+                    width: 150,
+                    height:45,
+                    fontSize: 20, 
+                    function: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const home())); // go to home Page
+                    }
+                    ),
+        
+                // add new version Button
+                  MyTextButton(
+                    text: "Add Version",
+                    width: 150,
+                    height:45,
+                    fontSize: 20, 
+                    function: addNewVersionMethod
+                    ),
+                ],
+              ),
+              Divider(color: Colors.grey.shade200, thickness: 0.7,),
+        
+               const SizedBox(height: 20,),
+        
+               // for versions (Text)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Versions",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.teal.shade100
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              
+        
+              const SizedBox(height: 20,),
+        
+              // list viwe of the versions
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: widget.file.versionsList.length,
+                      itemBuilder: (context, index) {
+                    
+                        return versionContainer(version: widget.file.versionsList[index]);
+                      },
+                      
+                      ),
+                  ),
+                  const SizedBox(height: 20,)
+               
+        
+        
+          ],
         ),
       ),
     );

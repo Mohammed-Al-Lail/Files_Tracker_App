@@ -1,8 +1,10 @@
 import 'package:files_tracker_app/classes/version.dart';
 import 'package:flutter/material.dart';
+import 'package:open_file/open_file.dart';
 
+// ignore: must_be_immutable
 class versionContainer extends StatelessWidget {
-  const versionContainer({
+   versionContainer({
     
     super.key,
     required this.version,
@@ -10,6 +12,7 @@ class versionContainer extends StatelessWidget {
 
   final Version version;
 
+  
   @override
   Widget build(BuildContext context) {
 
@@ -45,6 +48,9 @@ class versionContainer extends StatelessWidget {
       
               const SizedBox(height: 10,),
       
+
+      // Date section....
+
             // for date 
               Row(
       
@@ -80,6 +86,7 @@ class versionContainer extends StatelessWidget {
               const SizedBox(height: 50,),
       
       
+      //Attachment section....
       
               // for attachment
               Row(
@@ -98,19 +105,31 @@ class versionContainer extends StatelessWidget {
                   ),
                   const SizedBox(width: 10,),
       
-                  // here we have to provide an attachment file like pdf
+                  // here we have to provide an attachment file like pdf....
+
+      //------------------------------- Considerd as one Widget --------------------------------------------
       
                   if(version.pickedFile != null) // if there was an attachment
-      
+                     
                     TextButton( // show text button withe the file name
-                      onPressed: (){},
-                      child: Text(
-                        version.pickedFile!.name.toString(),
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blueAccent.shade700
+
+                      onPressed: (){// open the file when the user click on the nameof the file
+                        OpenFile.open(version.pickedFile!.path); // using open_file package
+                      },
+                      child: SizedBox( // so we can use SingleChildScrollView
+                        width: 250,
+                        child: SingleChildScrollView( // scrolling horizontally if the name was too long
+                          scrollDirection: Axis.horizontal,
+                          child: Text(
+                            version.pickedFile!.name.toString(),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.blueAccent.shade700
+                            ),
+                          ),
                         ),
                       ),
+                      
                      
                     )
                     
@@ -122,7 +141,7 @@ class versionContainer extends StatelessWidget {
                           color: Colors.red.shade700
                         ),
                     ),  
-      
+      //---------------------------------------------------------------------------------------------------------
                  
                 ]
               ),
