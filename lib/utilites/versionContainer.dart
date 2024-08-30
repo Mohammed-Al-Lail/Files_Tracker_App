@@ -1,3 +1,4 @@
+import 'package:files_tracker_app/Screens/VersionsScreen.dart';
 import 'package:files_tracker_app/classes/version.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
@@ -18,138 +19,243 @@ class versionContainer extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: Container(
-      
-        width: MediaQuery.of(context).size.width*0.3 , // 40 % from the screen size ,
-        height: 200,
-      
-        decoration: BoxDecoration(
-          color: Colors.grey[350],
-          borderRadius: const BorderRadius.all(Radius.circular(8))
-        ),
-      
-        child: Column(
-      
-          children: [
-      
-            const SizedBox(height: 5,),
-            // version Name
-              Center(
-                child: Text(
-                  version.title,
-                  style: const TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.black
+
+      child: GestureDetector(
+        onTap:(){ // go to the Revesion page
+           Navigator.push(context, MaterialPageRoute(builder: (context)=>versionScreen(version: version)));
+        },
+
+        child: Container(
+        
+          width: MediaQuery.of(context).size.width*0.3 , // 30 % from the screen size ,
+          height: 400,
+        
+          decoration: BoxDecoration(
+            color: Colors.grey[350],
+            borderRadius: const BorderRadius.all(Radius.circular(8))
+          ),
+        
+          child: Column(
+        
+            children: [
+        
+              const SizedBox(height: 5,),
+
+              // version Name
+                Center(
+                  child: Text(
+                    version.title,
+                    style: const TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.black
+                    ),
                   ),
                 ),
-              ),
-              const Divider(color: Colors.white,),
-      
-              const SizedBox(height: 10,),
-      
-
-      // Date section....
-
-            // for date 
-              Row(
-      
-                children: [
-                  const SizedBox(width: 10,),
-                  Text(
-                    "Date: ",
-                    style: TextStyle(
-      
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.grey.shade600,
-                      
+                const Divider(color: Colors.white,),
+        
+                const SizedBox(height: 10,),
+        
+        
+        // Submission  section....
+        
+              // for Submission date 
+                Row(
+        
+                  children: [
+                    const SizedBox(width: 10,),
+                    Text(
+                      "Submission Date: ",
+                      style: TextStyle(
+        
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.grey.shade600,
+                        
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 10,),
-      
-                  Text(
-                    version.date!.toLocal().toString().split(' ')[0],  // .split(' ') return list of items after specefic pattern
-                    style:  TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.grey.shade800,
-                      
+                    const SizedBox(width: 10,),
+        
+                    Text(
+                      version.submitedDate!.toLocal().toString().split(' ')[0],  // .split(' ') return list of items after specefic pattern
+                      style:  TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.grey.shade800,
+                        
+                      ),
                     ),
-                  ),
-      
-                  
-      
-                ]
-              ),
-      
-              const SizedBox(height: 50,),
-      
-      
-      //Attachment section....
-      
-              // for attachment
-              Row(
-      
-                children: [
-                  const SizedBox(width: 10,),
-                  Text(
-                    "Attachment: ",
-                    style: TextStyle(
-      
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.grey.shade600,
-                      
+        
+                    
+        
+                  ]
+                ),
+        
+                const SizedBox(height: 20,),
+        
+        
+        //Submmital file section....
+        
+                // for attachment
+                Row(
+        
+                  children: [
+                    const SizedBox(width: 10,),
+                    Text(
+                      "Submmital: ",
+                      style: TextStyle(
+        
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.grey.shade600,
+                        
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 10,),
-      
-                  // here we have to provide an attachment file like pdf....
-
-      //------------------------------- Considerd as one Widget --------------------------------------------
-      
-                  if(version.pickedFile != null) // if there was an attachment
-                     
-                    TextButton( // show text button withe the file name
-
-                      onPressed: (){// open the file when the user click on the nameof the file
-                        OpenFile.open(version.pickedFile!.path); // using open_file package
-                      },
-                      child: SizedBox( // so we can use SingleChildScrollView
-                        width: 250,
-                        child: SingleChildScrollView( // scrolling horizontally if the name was too long
-                          scrollDirection: Axis.horizontal,
-                          child: Text(
-                            version.pickedFile!.name.toString(),
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.blueAccent.shade700
+                    const SizedBox(width: 10,),
+        
+                    // here we have to provide an attachment file like pdf....
+        
+        //------------------------------- Considerd as one Widget --------------------------------------------
+        
+                    if(version.submmitedFile != null) // if there was an attachment
+                       
+                      TextButton( // show text button withe the file name
+        
+                        onPressed: (){// open the file when the user click on the nameof the file
+                          OpenFile.open(version.submmitedFile!.path); // using open_file package
+                        },
+                        child: SizedBox( // so we can use SingleChildScrollView
+                          width: 250,
+                          child: SingleChildScrollView( // scrolling horizontally if the name was too long
+                            scrollDirection: Axis.horizontal,
+                            child: Text(
+                              version.submmitedFile!.name.toString(),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.blueAccent.shade700
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                        
+                       
+                      )
                       
-                     
-                    )
-                    
-                  else // else if there was no attachment show this text
+                    else // else if there was no attachment show this text
+                      Text(
+                        "No files was attached",
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.red.shade700
+                          ),
+                      ),  
+        //---------------------------------------------------------------------------------------------------------
+                   
+                  ]
+                ),
+               const Divider(thickness: 2, color: Colors.black,),
+               const SizedBox(height: 20,),
+
+        // Returned files Section ........
+
+
+          // for returned date
+               Row(
+        
+                  children: [
+                    const SizedBox(width: 10,),
                     Text(
-                      "No files was attached",
+                      "return Date: ",
                       style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.red.shade700
-                        ),
-                    ),  
-      //---------------------------------------------------------------------------------------------------------
-                 
-                ]
-              ),
-      
-      
-      
-      
-          ],
+        
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.grey.shade600,
+                        
+                      ),
+                    ),
+                    const SizedBox(width: 10,),
+                // for returned date {could be updated later}
+                    // Text(
+                    //   version.date!.toLocal().toString().split(' ')[0],  // .split(' ') return list of items after specefic pattern
+                    //   style:  TextStyle(
+                    //     fontSize: 18,
+                    //     fontWeight: FontWeight.w900,
+                    //     color: Colors.grey.shade800,
+                        
+                    //   ),
+                    // ),
+        
+                    
+        
+                  ]
+                ),
+
+            const SizedBox(height: 20,),
+              Row(
+        
+                  children: [
+                    const SizedBox(width: 10,),
+                    Text(
+                      "return: ",
+                      style: TextStyle(
+        
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.grey.shade600,
+                        
+                      ),
+                    ),
+                    const SizedBox(width: 10,),
+        
+                    // here we have to provide an attachment file like pdf....
+        
+        //------------------------------- Considerd as one Widget --------------------------------------------
+        
+                    // if(version.pickedFile != null) // if there was an attachment
+                       
+                    //   TextButton( // show text button withe the file name
+        
+                    //     onPressed: (){// open the file when the user click on the nameof the file
+                    //       OpenFile.open(version.pickedFile!.path); // using open_file package
+                    //     },
+                    //     child: SizedBox( // so we can use SingleChildScrollView
+                    //       width: 250,
+                    //       child: SingleChildScrollView( // scrolling horizontally if the name was too long
+                    //         scrollDirection: Axis.horizontal,
+                    //         child: Text(
+                    //           version.pickedFile!.name.toString(),
+                    //           style: TextStyle(
+                    //             fontSize: 20,
+                    //             color: Colors.blueAccent.shade700
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                        
+                       
+                    //   )
+                      
+                    // else // else if there was no attachment show this text
+                    //   Text(
+                    //     "No files was attached",
+                    //     style: TextStyle(
+                    //         fontSize: 14,
+                    //         color: Colors.red.shade700
+                    //       ),
+                    //   ),  
+        //---------------------------------------------------------------------------------------------------------
+                   
+                  ]
+                ),
+
+                
+        
+        
+        
+        
+            ],
+          ),
         ),
       ),
     );

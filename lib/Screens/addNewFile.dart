@@ -1,6 +1,6 @@
 import 'package:files_tracker_app/Screens/distinctFileScreen.dart';
 import 'package:files_tracker_app/classes/file.dart';
-import 'package:files_tracker_app/providers/dateProvider.dart';
+import 'package:files_tracker_app/providers/dataProvider.dart';
 import 'package:files_tracker_app/utilites/myTextField.dart';
 import 'package:files_tracker_app/utilites/myTextButton.dart';
 import 'package:flutter/material.dart';
