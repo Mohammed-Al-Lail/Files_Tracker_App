@@ -27,8 +27,8 @@ class versionContainer extends StatelessWidget {
 
         child: Container(
         
-          width: MediaQuery.of(context).size.width*0.3 , // 30 % from the screen size ,
-          height: 400,
+          width: MediaQuery.of(context).size.width  , 
+          height: 320,
         
           decoration: BoxDecoration(
             color: Colors.grey[350],
@@ -59,7 +59,8 @@ class versionContainer extends StatelessWidget {
         
         // Submission  section....
         
-              // for Submission date 
+              // Row for Submission date 
+
                 Row(
         
                   children: [
@@ -96,7 +97,8 @@ class versionContainer extends StatelessWidget {
         
         //Submmital file section....
         
-                // for attachment
+               //Row for submiission file
+
                 Row(
         
                   children: [
@@ -145,8 +147,10 @@ class versionContainer extends StatelessWidget {
                       Text(
                         "No files was attached",
                         style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.red.shade700
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.red.shade800,
+                            
                           ),
                       ),  
         //---------------------------------------------------------------------------------------------------------
@@ -159,7 +163,8 @@ class versionContainer extends StatelessWidget {
         // Returned files Section ........
 
 
-          // for returned date
+          // //Row for return date
+
                Row(
         
                   children: [
@@ -174,22 +179,38 @@ class versionContainer extends StatelessWidget {
                         
                       ),
                     ),
+
                     const SizedBox(width: 10,),
+
+            //------------------------------- Considerd as one Widget --------------------------------------------
+
                 // for returned date {could be updated later}
-                    // Text(
-                    //   version.date!.toLocal().toString().split(' ')[0],  // .split(' ') return list of items after specefic pattern
-                    //   style:  TextStyle(
-                    //     fontSize: 18,
-                    //     fontWeight: FontWeight.w900,
-                    //     color: Colors.grey.shade800,
+                  if(version.returnedDate != null)
+                    Text( // if the return date was assigned this text will appear
+                      version.returnedDate!.toLocal().toString().split(' ')[0],  // .split(' ') return list of items after specefic pattern
+                      style:  TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.grey.shade800,
                         
-                    //   ),
-                    // ),
-        
-                    
-        
-                  ]
+                      ),
+                    )
+
+                  else
+                    Text( // if the return date was not assigned
+                      "Not assigned" ,
+                      style:TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.red.shade800,
+                        
+                      ),
+                    ),
+
+                 ]
                 ),
+
+          //Row for return file
 
             const SizedBox(height: 20,),
               Row(
@@ -212,38 +233,39 @@ class versionContainer extends StatelessWidget {
         
         //------------------------------- Considerd as one Widget --------------------------------------------
         
-                    // if(version.pickedFile != null) // if there was an attachment
+                    if(version.returnedFile != null) // if there was an attachment
                        
-                    //   TextButton( // show text button withe the file name
+                      TextButton( // show text button withe the file name
         
-                    //     onPressed: (){// open the file when the user click on the nameof the file
-                    //       OpenFile.open(version.pickedFile!.path); // using open_file package
-                    //     },
-                    //     child: SizedBox( // so we can use SingleChildScrollView
-                    //       width: 250,
-                    //       child: SingleChildScrollView( // scrolling horizontally if the name was too long
-                    //         scrollDirection: Axis.horizontal,
-                    //         child: Text(
-                    //           version.pickedFile!.name.toString(),
-                    //           style: TextStyle(
-                    //             fontSize: 20,
-                    //             color: Colors.blueAccent.shade700
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
+                        onPressed: (){// open the file when the user click on the nameof the file
+                          OpenFile.open(version.returnedFile!.path); // using open_file package
+                        },
+                        child: SizedBox( // so we can use SingleChildScrollView
+                          width: 250,
+                          child: SingleChildScrollView( // scrolling horizontally if the name was too long
+                            scrollDirection: Axis.horizontal,
+                            child: Text(
+                              version.returnedFile!.name.toString(),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.blueAccent.shade700
+                              ),
+                            ),
+                          ),
+                        ),
                         
                        
-                    //   )
+                      )
                       
-                    // else // else if there was no attachment show this text
-                    //   Text(
-                    //     "No files was attached",
-                    //     style: TextStyle(
-                    //         fontSize: 14,
-                    //         color: Colors.red.shade700
-                    //       ),
-                    //   ),  
+                    else // else if there was no attachment show this text
+                      Text(
+                        "No files was attached",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.red.shade800,
+                          ),
+                      ),  
         //---------------------------------------------------------------------------------------------------------
                    
                   ]

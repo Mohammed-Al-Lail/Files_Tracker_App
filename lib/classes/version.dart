@@ -13,24 +13,11 @@ class Version{
 
 
   final String title;
-  final DateTime? submitedDate;
+  DateTime? submitedDate;
   DateTime? returnedDate;
   PlatformFile? submmitedFile; // not required
   PlatformFile? returnedFile; // not required
 
 
-
-// methods 
-
-//method to update the returned date 
-
-void setReturnDate(DateTime? date){
-  returnedDate=date;
-}
-
-//method to set return file 
-void setReturnedFile(PlatformFile? file){
-  returnedFile = file;
-}
 
 }

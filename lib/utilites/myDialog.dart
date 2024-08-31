@@ -107,7 +107,7 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                   // icon button to select the date
                     IconButton(
                           onPressed: (){ // go to the (datatProvider) class to see the method
-                            myProvider.selectDateMethod(context);
+                            myProvider.SelectSubmissionDate(context);
                           }, 
                 
                           icon: const Icon( // icon to select date
@@ -123,9 +123,9 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                           ),
                           // choosen date (Text)
 
-                          if(myProvider.selectedDate!=null) // if the user choose date from the calander
+                          if(myProvider.submissiondDate!=null) // if the user choose date from the calander
                             Text(
-                              myProvider.selectedDate!.toLocal().toString().split(' ')[0], // show the selected date on the screen
+                              myProvider.submissiondDate!.toLocal().toString().split(' ')[0], // show the selected date on the screen
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -162,7 +162,7 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                             // icon button to attach file
                               IconButton(
 
-                              onPressed:myProvider.selectFile , // you can find this mehod at the top of this file  {this class}
+                              onPressed:myProvider.selectSubmittedFile , // you can find this mehod at the top of this file  {this class}
                                icon: const Icon(
                                  Icons.attach_file,
                                  size: 30,
@@ -185,7 +185,17 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                                       fontWeight: FontWeight.bold,
                                       color: Colors.amber.shade600
                                     ),
-                                    ),
+                                    )
+
+                                else // else if the file was = null (not selected)
+                                  Text( // show this text
+                                     "Please Select File",
+                                      style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.red.shade900
+                              ),
+                              ) ,
 
                           Divider(color: Colors.grey.shade300,),
                           const SizedBox(height: 10,),
@@ -198,13 +208,13 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                             text: "Add", 
                             function: (){
                         
-                              if( _formKey.currentState!.validate() && myProvider.selectedDate != null){ // if the form was valid and the user select date
+                              if( _formKey.currentState!.validate() && myProvider.submissiondDate != null && myProvider.submitedFile !=null){ // if the form was valid and the user select date and file
                         
                                 myProvider.addVersion( // add new Version { see the method on the [dataProvider class] }
                                   widget.file,
                                   Version(
                                     title: _versionNameController.text.trim(), 
-                                    submitedDate: myProvider.selectedDate,
+                                    submitedDate: myProvider.submissiondDate,
                                     submmitedFile: myProvider.submitedFile // this value could be null {not neccessary to have a value here}
                                     ),
                                   
@@ -218,7 +228,8 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                 
                                  // to update the state directly and restart the variables
                                 _versionNameController.text="";
-                                  myProvider.makeDateNull(); // reset the date { this method comes from dataProvider class}
+                                  myProvider.resetData(); // reset the date { this method comes from dataProvider class}
+                                  
                               
                 
                               }
