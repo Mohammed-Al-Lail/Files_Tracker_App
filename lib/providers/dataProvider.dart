@@ -10,7 +10,7 @@ class dataProvider extends ChangeNotifier{
 
 // map of files with file number as key and list of versioins of that file as value
 
-final Map < int , File  > filesMap = {};
+final Map < String , File  > filesMap = {};
 // Data of the file
 
 DateTime? _submissiondDate;
@@ -64,7 +64,7 @@ PlatformFile? _returnFile;
   
     //method to add version
     void addVersion(File file, Version version){
-      filesMap[file.fileNumber]!.versionsList.add(version);
+      filesMap[file.fileName]!.versionsList.add(version);
       notifyListeners();
     }
 
@@ -88,7 +88,7 @@ PlatformFile? _returnFile;
 
 // method to add new file to the map
     void addFile(File file){
-      filesMap[file.fileNumber] = file ;
+      filesMap[file.fileName] = file ;
       notifyListeners();
     }
 

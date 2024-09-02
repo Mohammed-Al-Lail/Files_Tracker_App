@@ -17,7 +17,7 @@ class _addNewFileState extends State<addNewFile> {
 
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); // this key will be used to validate the form
-  final TextEditingController _fileNumberController = TextEditingController();
+  final TextEditingController _fileNameController = TextEditingController();
   final TextEditingController _fileDescreptionController = TextEditingController();
 
 
@@ -30,7 +30,7 @@ class _addNewFileState extends State<addNewFile> {
 
             Provider.of<dataProvider>(context , listen: false).addFile( // use provider packeg {make listen: false since we are using method }
               File( // add new file to the system
-              fileNumber: int.parse(_fileNumberController.text), 
+              fileName: _fileNameController.text.trim(), // {.trim()} is to remove the white spaces at the end
               fileDescreption: _fileDescreptionController.text,
                 )  
               );
@@ -58,7 +58,7 @@ class _addNewFileState extends State<addNewFile> {
 
             Future.delayed( // after 4 second open the new file page
               const Duration(seconds: 4),
-              () => Navigator.push(context, MaterialPageRoute(builder: (context)=> distinctFileScreen(file: Provider.of<dataProvider>(context).filesMap[int.parse(_fileNumberController.text)]!  ))),
+              () => Navigator.push(context, MaterialPageRoute(builder: (context)=> distinctFileScreen(file: Provider.of<dataProvider>(context).filesMap[_fileNameController.text]!  ))),
               
             );
             
@@ -143,7 +143,7 @@ class _addNewFileState extends State<addNewFile> {
         
           // for enter file number (text)
             Text(
-              "Enter File Number",
+              "Enter File Name",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w900,
@@ -152,22 +152,28 @@ class _addNewFileState extends State<addNewFile> {
             ),
             const SizedBox(height: 10,),
         
-          // for File Number
+          // for File Name
             myTextField(
-              controller: _fileNumberController,
-              label: "File Number",
-              maxLength: 8,
-              keyboardType: TextInputType.number,
+              controller: _fileNameController,
+              label: "File Name",
+              maxLength: 15,
+              keyboardType: TextInputType.text,
+              errorFontSize: 13,
               validator: (val){
+
         
               // conditions...
         
-                if(_fileNumberController.text.length!=8){ 
-                  return "The file number must be 8 length";
+                if(_fileNameController.text.trim().length<=5){ 
+                  return "The file Name must be 6 length at least";
                 }
-                if(Provider.of<dataProvider>(context,listen: false).filesMap.keys.contains(int.parse(_fileNumberController.text))){
+                if(Provider.of<dataProvider>(context,listen: false).filesMap.keys.toString().toUpperCase().contains(_fileNameController.text.trim().toUpperCase())){
         
-                  return "This file number alredy exist on the system !!";
+                  return "This file Name alredy exist on the system !";
+                }
+                    // if the user try to add spaces to the file name
+                if(_fileNameController.text.contains(" ")){
+                  return "Pleas don't use spaces in the file name.Use - instade";
                 }
                 // if every thing was ok
                 return null;
@@ -194,6 +200,7 @@ class _addNewFileState extends State<addNewFile> {
               label: "File descreption",
               maxLength: 400,
               keyboardType: TextInputType.text,
+              errorFontSize: 13,
               validator: (val){
         
                 // condtions ...

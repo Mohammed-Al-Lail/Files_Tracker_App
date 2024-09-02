@@ -4,13 +4,13 @@ class File {
 
 File({ // constructor
 
-required this.fileNumber,
+required this.fileName,
 required this.fileDescreption,
 
 
 });
 
-final int fileNumber;
+final String fileName;
 String fileDescreption;
 final List <Version> versionsList = [];
 

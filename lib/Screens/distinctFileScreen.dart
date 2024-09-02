@@ -78,13 +78,14 @@ class _distinctFileScreenState extends State<distinctFileScreen> {
           children: [
            const SizedBox(height: 30,),
             
-            // for file number (text) 
+            // for file Name (text) 
               Row(
         
                 children: [
                   const SizedBox(width: 10,),
+
                   Text(
-                    "File Num:",
+                    "File Name:",
                     style: TextStyle(
         
                       fontSize: 16,
@@ -95,13 +96,14 @@ class _distinctFileScreenState extends State<distinctFileScreen> {
                   const SizedBox(width: 10,),
         
                   Text(
-                    "${widget.file.fileNumber}",
+                    widget.file.fileName,
+                    textAlign: TextAlign.center,
                     style:  TextStyle(
-        
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
-                      backgroundColor: Colors.teal.shade900
+                      backgroundColor: Colors.teal.shade900,
+                      letterSpacing: 2
                     ),
                   ),
         

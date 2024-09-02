@@ -15,16 +15,16 @@ class searchForFile extends StatefulWidget {
 class _searchForFileState extends State<searchForFile> {
 
 
-    final TextEditingController _fileNumberController = TextEditingController();
+    final TextEditingController _fileNameController = TextEditingController();
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); // this key will be used to validate the form
     
 
  // method for the search button   
    void searchButtonMethod(){
 
-    for(int fileNumber in Provider.of<dataProvider>(context,listen: false).filesMap.keys){
+    for(String fileName in Provider.of<dataProvider>(context,listen: false).filesMap.keys){
 
-      if( _fileNumberController.text.trim() == fileNumber.toString()){
+      if( _fileNameController.text.trim().toLowerCase() == fileName.toString().toLowerCase()){ // use .toLowerCase() to unable the serching in two ways upper case searching and lower case searching
 
         ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -52,7 +52,7 @@ class _searchForFileState extends State<searchForFile> {
 
         Future.delayed( // after 3 seconds go to the file page information 
           const Duration(seconds: 3) ,
-          () => Navigator.push(context, MaterialPageRoute(builder: (context)=> distinctFileScreen(file: Provider.of<dataProvider>(context).filesMap[fileNumber]!))),
+          () => Navigator.push(context, MaterialPageRoute(builder: (context)=> distinctFileScreen(file: Provider.of<dataProvider>(context).filesMap[fileName]!))),
         );
 
 
@@ -155,7 +155,7 @@ class _searchForFileState extends State<searchForFile> {
           
             // for enter file number (text)
               Text(
-                "Enter File Number",
+                "Enter File Name",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
@@ -165,20 +165,20 @@ class _searchForFileState extends State<searchForFile> {
         
               const SizedBox(height: 10,),
         
-            // for File Number
+            // for File Name
               Form(
                 key: _formKey,
         
                 child: myTextField(
-                  controller: _fileNumberController,
-                  label: "File Number",
-                  maxLength: 8,
-                  keyboardType: TextInputType.number,
+                  controller: _fileNameController,
+                  label: "File Name",
+                  maxLength: 15,
+                  keyboardType: TextInputType.text,
                   validator: (val) {
                     
                     // conditions....
-                    if(_fileNumberController.text.length!=8){
-                      return "The file number must be 8 length";
+                    if(_fileNameController.text.trim().length<=5){
+                      return "The file Name must be 6 length at least";
                     }
         
                     return null;

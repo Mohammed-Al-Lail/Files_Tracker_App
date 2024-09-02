@@ -26,14 +26,28 @@ class _updateInfoDialogState extends State<updateInfoDialog> {
 
           // dialog title
 
-          title:  Text(
-            " Edit Version: ${widget.version.title}",
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.w900,
-              color: Colors.teal.shade50
-            ),
-            ),
+          title:  Row(
+            children: [
+              Text(
+                " Edit Version: ",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.teal.shade50
+                ),
+                ),
+                const SizedBox(width: 3,),
+
+                Text(
+                widget.version.title,
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.teal.shade50
+                ),
+                ),
+            ],
+          ),
 
 
         // contents of the dialog
@@ -250,13 +264,8 @@ class _updateInfoDialogState extends State<updateInfoDialog> {
                           function: (){
                           // update data
                              myProvider.updateVersionData(widget.version);
-                             setState(() {});
-                               
-                             
                              myProvider.resetData(); // reset the date { this method comes from dataProvider class}
                              Navigator.pop(context); // close the page after adding new version
-                             
-                                
                             }
                             
                   
